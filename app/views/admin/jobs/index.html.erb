@@ -2,6 +2,11 @@
   <%= link_to("后台发布工作", new_admin_job_path, :class => "btn btn-default" ) %>
 </div>
 <table class="table table-boldered">
+  <tr>
+    <td>标题</td>
+    <td>正文</td>
+    <td>编辑</td>
+    <td>创建时间</td>
   <% @jobs.each do |job| %>
   <tr>
     <td>

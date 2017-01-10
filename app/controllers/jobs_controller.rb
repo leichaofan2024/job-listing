@@ -13,7 +13,14 @@ before_filter :authenticate_user!, only: [:new, :create, :update, :edit, :destro
     redirect_to jobs_path, alert: "删除成功！"
   end
   def index
-    @jobs = Job.where(:is_hidden => false).order("created_at DESC")
+    @jobs = case params[:order]
+          when 'by_lower_bound'
+            Job.where(is_hidden: false).order('wage_lower_bound DESC')
+          when 'by_upper_bound'
+            Job.where(is_hidden: false).order('wage_upper_bound')
+          else
+            Job.where(is_hidden: false).order("created_at DESC")
+          end
   end
   def new
     @job = Job.new
