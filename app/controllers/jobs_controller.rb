@@ -17,7 +17,7 @@ before_filter :authenticate_user!, only: [:new, :create, :update, :edit, :destro
           when 'by_lower_bound'
             Job.where(is_hidden: false).order('wage_lower_bound DESC')
           when 'by_upper_bound'
-            Job.where(is_hidden: false).order('wage_upper_bound')
+            Job.where(is_hidden: false).order('wage_upper_bound DESC')
           else
             Job.where(is_hidden: false).order("created_at DESC")
           end
